@@ -1,7 +1,13 @@
 const inquirer = require('inquirer');
+const fs = require('fs');
 var sh = require('./lib/shapes.js');
 
 const questions = [
+    {
+        name: 'slogan', 
+        message: "What text do you want on the logo?", 
+        type: 'input'
+    },
     {
         name: "color", 
         message:"what color do you want your logo?", 
@@ -12,13 +18,8 @@ const questions = [
         message: "What shape do you want your logo?", 
         type: 'list',
         choices: ['square', 'circle','triangle']
-    },
-    {
-        name: 'slogan', 
-        message: "What text do you want on the logo?", 
-        type: 'input'
     }
-]
+];
 
 inquirer
 .prompt(questions)
