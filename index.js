@@ -11,6 +11,11 @@ const questions = [
         type: 'input'
     },
     {
+        name: "text_color", 
+        message:"what color do you want your logo text?", 
+        type: "input"
+    },
+    {
         name: "color", 
         message:"what color do you want your logo?", 
         type: "input"
@@ -41,7 +46,7 @@ inquirer
             thingie = new Circle;
             break;
     }
-    
+
     thingie.color = answers.color;
     console.log(thingie);
 });
