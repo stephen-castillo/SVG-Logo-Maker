@@ -74,8 +74,8 @@ inquirer
     newsvg.setText(slogan, text_color);
     newsvg.setShape(shape);
     svgData = newsvg.render();
-    console.log(svgData);
-    
+    //console.log(svgData);
+    makeFile(svgData);
     
     
 });
