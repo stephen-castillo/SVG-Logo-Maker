@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const {Circle, Square, Triangle} = require('./lib/shapes.js');
+const SVG = require('./lib/svg.js');
 
 //console.log(sh);
 
@@ -28,26 +29,36 @@ const questions = [
     }
 ];
 
+function makeFile(data) {
+    fs.writeFile('./deliverable/logo.svg', data, err => {
+        if(err){
+            console.log(err);
+        }
+    });
+}
+
 inquirer
 .prompt(questions)
 .then(answers => {
     console.log(answers);
-    let thingie = '';
+    let shape = '';
     switch(answers.shape){
         case 'Square':
-            thingie = new Square;
+            shape = new Square;
             break;
 
         case 'Triangle':
-            thingie = new Triangle;
+            shape = new Triangle;
             break;
         
         case 'Circle':
-            thingie = new Circle;
+            shape = new Circle;
             break;
     }
 
-    thingie.color = answers.color;
-    console.log(thingie);
+    shape.setColor(answers.color);
+    
+    
+    
 });
 
