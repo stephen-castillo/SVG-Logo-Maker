@@ -2,6 +2,10 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const {Circle, Square, Triangle} = require('./lib/shapes.js');
 const SVG = require('./lib/svg.js');
+var newsvg;
+var svgData;
+var slogan;
+var shape;
 
 //console.log(sh);
 
@@ -41,7 +45,16 @@ inquirer
 .prompt(questions)
 .then(answers => {
     console.log(answers);
-    let shape = '';
+    
+    if(answers.slogan.length > 0 && answers.slogan.length < 4){
+        slogan = answers.slogan;
+    }else{
+        console.log(`Please input up to 3 characters only. You entered ${answers.slogan.length} characters`);
+        return;
+    }
+
+    text_color = answers.text_color;
+    
     switch(answers.shape){
         case 'Square':
             shape = new Square;
@@ -57,6 +70,11 @@ inquirer
     }
 
     shape.setColor(answers.color);
+    newsvg = new SVG();
+    newsvg.setText(slogan, text_color);
+    newsvg.setShape(shape);
+    svgData = newsvg.render();
+    console.log(svgData);
     
     
     
